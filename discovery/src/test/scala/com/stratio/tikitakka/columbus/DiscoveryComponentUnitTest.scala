@@ -1,4 +1,7 @@
-package com.stratio.tikitakka.discovery
+package com.stratio.tikitakka.columbus
+
+import scala.concurrent.Await
+import scala.concurrent.duration._
 
 import org.junit.runner.RunWith
 import org.scalatest.WordSpec
@@ -8,13 +11,15 @@ import org.scalatest.ShouldMatchers
 @RunWith(classOf[JUnitRunner])
 class DiscoveryComponentUnitTest extends WordSpec with ShouldMatchers {
 
+  val timeout = 3 seconds
+
   "DiscoveryComponent" should {
 
     "know if the discovery service is up" in new DummyDiscoveryComponent {
 
       val uri = upHost
 
-      isUp should be(true)
+      Await.result(isUp, timeout) should be(true)
 
     }
 
@@ -22,7 +27,7 @@ class DiscoveryComponentUnitTest extends WordSpec with ShouldMatchers {
 
       val uri = "fakeHost"
 
-      isUp should be(false)
+      Await.result(isUp, timeout) should be(false)
 
     }
   }

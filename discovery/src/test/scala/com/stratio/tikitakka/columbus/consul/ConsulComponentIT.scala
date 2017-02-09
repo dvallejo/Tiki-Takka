@@ -1,4 +1,4 @@
-package com.stratio.tikitakka.discovery.consul
+package com.stratio.tikitakka.columbus.consul
 
 import scala.concurrent.Await
 import scala.concurrent.duration._
@@ -12,20 +12,20 @@ import org.scalatest.junit.JUnitRunner
 import org.scalatest.ShouldMatchers
 
 @RunWith(classOf[JUnitRunner])
-class ConsulComponentIntegrationTest extends WordSpec with ShouldMatchers {
+class ConsulComponentIT extends WordSpec with ShouldMatchers {
 
   trait ActorTestSystem {
 
     implicit val system = ActorSystem("Actor-Test-System")
     implicit val actorMaterializer = ActorMaterializer(ActorMaterializerSettings(system))
-    implicit val timeout = 5 seconds
+    val timeout = 3 seconds
   }
 
   "ConsulComponent" should {
 
     "know if the discovery service is up" in new ConsulComponent with ActorTestSystem {
 
-      Await.result(isUp, timeout) should be(right = true)
+      Await.result(isUp, timeout) should be(true)
 
     }
 
@@ -33,7 +33,7 @@ class ConsulComponentIntegrationTest extends WordSpec with ShouldMatchers {
 
       override val uri = "fakeHost"
 
-      Await.result(isUp, timeout) should be(right = false)
+      Await.result(isUp, timeout) should be(false)
 
     }
   }

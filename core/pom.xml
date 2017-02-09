@@ -12,4 +12,32 @@
     <artifactId>core</artifactId>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <!-- Internal dependencies -->
+        <dependency>
+            <groupId>com.stratio.tikitakka</groupId>
+            <artifactId>common</artifactId>
+            <version>${version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.stratio.tikitakka</groupId>
+            <artifactId>discovery</artifactId>
+            <version>${version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.stratio.tikitakka</groupId>
+            <artifactId>discovery</artifactId>
+            <version>${version}</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+
+        <!--External dependencies-->
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-actor_2.11</artifactId>
+            <version>${akka.version}</version>
+        </dependency>
+    </dependencies>
+
 </project>
