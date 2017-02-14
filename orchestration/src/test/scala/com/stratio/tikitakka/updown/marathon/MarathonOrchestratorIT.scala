@@ -56,7 +56,7 @@ class MarathonOrchestratorIT extends WordSpec with ShouldMatchers {
         )
       val testResult = Try{
         val result: Future[AppInfo] = upApplication(application)
-        Await.result(result, timeout) shouldBe an[MarathonApplication]
+        Await.result(result, timeout) shouldBe an[AppInfo]
         Await.result(result, timeout).id shouldBe application.id
       }
       Await.result(destroyApplication(application.id), timeout)

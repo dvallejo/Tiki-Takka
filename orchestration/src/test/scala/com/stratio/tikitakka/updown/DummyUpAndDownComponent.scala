@@ -39,6 +39,6 @@ trait DummyUpAndDownComponent extends UpAndDownComponent {
 
   def downApplication(application: AppInfo): Future[AppInfo] = Future {
     if (application.id == validBuild.id) AppInfo(validBuild.id)
-    else throw ResponseException("Error when up", new Exception)
+    else throw ResponseException("Error when down", new Exception)
   }
 }
